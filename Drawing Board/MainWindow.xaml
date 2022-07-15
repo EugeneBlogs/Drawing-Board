@@ -1,0 +1,88 @@
+﻿<Window x:Class="Drawing_Board.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Drawing_Board"
+        mc:Ignorable="d"
+        Title="Drawing Board" Height="450" Width="800" Loaded="Window_Loaded" Icon="/Иконка.png">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition Height="22"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Menu Height="30" VerticalAlignment="Top" Background="White">
+            <MenuItem Header="Режим редактирования">
+                <ComboBox Name="lstEditingMode" VerticalAlignment="Center" HorizontalAlignment="Stretch" Margin="0,0,10,0"/>
+                <Button Content="УДАЛИТЬ ВСЁ" Click="Button_Click" Cursor="Hand" Background="White"/>
+            </MenuItem>
+            <MenuItem Header="Палитра">
+                <MenuItem Header="Цвет фона">
+                    <TextBox x:Name="af" Text="" TextWrapping="Wrap" Width="60" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" Height="30" TextChanged="af_TextChanged"/>
+                    <TextBox x:Name="rf" Text="" TextWrapping="Wrap" Width="60" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" Height="30" Background="Red" TextChanged="af_TextChanged"/>
+                    <TextBox x:Name="gf" Text="" TextWrapping="Wrap" Width="60" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" Height="30" Background="LawnGreen" TextChanged="af_TextChanged"/>
+                    <TextBox x:Name="bf" Text="" TextWrapping="Wrap" Width="60" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" Height="30" Background="Blue" Foreground="White" TextChanged="af_TextChanged"/>
+                </MenuItem>
+                <Separator/>
+                <MenuItem Header="Цвет кисти">
+                    <TextBox x:Name="a" Text="" TextWrapping="Wrap" Width="60" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" Height="30"  TextChanged="a_TextChanged"/>
+                    <TextBox x:Name="r" Text="" TextWrapping="Wrap" Width="60" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" Height="30"  Background="Red" TextChanged="a_TextChanged"/>
+                    <TextBox x:Name="g" Text="" TextWrapping="Wrap" Width="60" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" Height="30"  Background="LawnGreen" TextChanged="a_TextChanged"/>
+                    <TextBox x:Name="b" Text="" TextWrapping="Wrap" Width="60" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" Height="30"  Background="Blue" Foreground="White" TextChanged="a_TextChanged"/>
+                </MenuItem>
+                <Separator/>
+                <MenuItem Header="Заготовленные цвета" Cursor="Help">
+                    <Label Content="Красный - ARGB(255, 255, 0, 0)" Cursor="No" Foreground="Red"/>
+                    <Label Content="Оранжевый - ARGB(255, 255, 165, 0)" Cursor="No" Foreground="Orange"/>
+                    <Label Content="Жёлтый - ARGB(255, 255, 255, 0)" Cursor="No" Foreground="Yellow"/>
+                    <Label Content="Зелёный - ARGB(255, 0, 128, 0)" Cursor="No" Foreground="Green"/>
+                    <Label Content="Голубой - ARGB(255, 0, 255, 255)" Cursor="No" Foreground="Cyan"/>
+                    <Label Content="Синий - ARGB(255, 0, 0, 255)" Cursor="No" Foreground="Blue"/>
+                    <Label Content="Фиолетовый - ARGB(255, 147, 112, 219)" Cursor="No" Foreground="MediumPurple"/>
+                    <Label Content="Розовый - ARGB(255, 255, 192, 203)" Cursor="No" Foreground="Pink"/>
+                    <Label Content="Чёрный - ARGB(255, 0, 0, 0)" Cursor="No" Foreground="Black"/>
+                    <Label Content="Серый - ARGB(255, 128, 128, 128)" Cursor="No" Foreground="Gray"/>
+                    <Label Content="Белый - ARGB(255, 255, 255, 255)" Cursor="No" Foreground="White"/>
+                </MenuItem>
+            </MenuItem>
+            <MenuItem Header="Добавление">
+                <Button Content="Изображение" Click="Button_Click_3" Cursor="Hand" Background="Red"/>
+                <Separator/>
+                <MenuItem Header="Прямоугольник" Background="Yellow">
+                    <TextBox x:Name="abo" Text="A" Height="30" TextWrapping="Wrap" Width="130" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto"/>
+                    <TextBox x:Name="rbo" Text="R" Height="30" TextWrapping="Wrap" Width="130" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" Background="Red"/>
+                    <TextBox x:Name="gbo" Text="G" Height="30" TextWrapping="Wrap" Width="130" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" Background="LawnGreen"/>
+                    <TextBox x:Name="bbo" Text="B" Height="30" TextWrapping="Wrap" Width="130" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" Background="Blue" Foreground="White"/>
+                    <Button Content="Добавить на InkCanvas" Click="Button_Click_6" Cursor="Hand" Background="Coral"/>
+                </MenuItem>
+                <Separator/>
+                <MenuItem Header="Круг/Овал" Background="LawnGreen">
+                    <TextBox x:Name="ael" Text="A" Height="30" TextWrapping="Wrap" Width="130" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto"/>
+                    <TextBox x:Name="rel" Text="R" Height="30" TextWrapping="Wrap" Width="130" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" Background="Red"/>
+                    <TextBox x:Name="gel" Text="G" Height="30" TextWrapping="Wrap" Width="130" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" Background="LawnGreen"/>
+                    <TextBox x:Name="bel" Text="B" Height="30" TextWrapping="Wrap" Width="130" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" Background="Blue" Foreground="White"/>
+                    <Button Content="Добавить на InkCanvas" Click="Button_Click_7" Cursor="Hand" Background="Coral"/>
+                </MenuItem>
+            </MenuItem>
+            <MenuItem Header="Настройки">
+                <MenuItem Header="Ширина рисунка">
+                    <TextBox x:Name="sh" Text="" TextWrapping="Wrap" Height="30" Width="60" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" Background="Black" Foreground="White" TextChanged="sh_TextChanged"/>
+                </MenuItem>
+                <Separator/>
+                <MenuItem Header="О режимах" Cursor="Help">
+                    <Label Content="None - обычный курсор, отсутствие какого-либо действия." Cursor="No"/>
+                    <Label Content="Ink - используется по умолчанию и предполагает рисование стилусом или мышью." Cursor="No"/>
+                    <Label Content="GestureOnly - рисование только с помощью жестов пользователя." Cursor="No"/>
+                    <Label Content="InkAndGesture - рисование с помощью мыши/стилуса, а также с помощью жестов (Up, Down, Tap и др.)." Cursor="No"/>
+                    <Label Content="Select - выделение всех штрихов при касании." Cursor="No"/>
+                    <Label Content="EraseByPoint - стирание только части штриха, к которой прикоснулся стилус." Cursor="No"/>
+                    <Label Content="EraseByStroke - стирание всего штриха стилусом." Cursor="No"/>
+                </MenuItem>
+                <Separator/>
+            </MenuItem>
+        </Menu>
+        <InkCanvas Name="inkCanvas" Grid.Row="1" Background="LightBlue" EditingMode="{Binding ElementName=lstEditingMode, Path=SelectedItem}" Gesture="inkCanvas_Gesture" Cursor="Pen"/>
+        <TextBox Name="gestureName" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Grid.Row="2" IsReadOnly="True"/>
+    </Grid>
+</Window>
